@@ -1,4 +1,3 @@
-
 import { Nav } from '@/components/Nav';
 import { Footer } from '@/components/Footer';
 import { Roadmap } from '@/components/Roadmap';
@@ -6,7 +5,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { CheckCircle, AlertTriangle, Award, Book, Rocket } from 'lucide-react';
+import { CheckCircle, AlertTriangle, Award, Book, Rocket, Users } from 'lucide-react';
 
 const Episode7 = () => {
   const roadmapSteps = [
