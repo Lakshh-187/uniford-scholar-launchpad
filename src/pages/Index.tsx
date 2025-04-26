@@ -1,8 +1,10 @@
-
 import { Nav } from '@/components/Nav';
 import { Footer } from '@/components/Footer';
 import { EpisodeCard } from '@/components/EpisodeCard';
 import { InfoCard } from '@/components/InfoCard';
+import { QueryTable } from '@/components/QueryTable';
+import { HowItWorks } from '@/components/HowItWorks';
+import { Roadmap } from '@/components/Roadmap';
 import { Button } from '@/components/ui/button';
 import { Book, Users, Award, Rocket } from 'lucide-react';
 
@@ -60,6 +62,21 @@ const Index = () => {
     }
   ];
 
+  const missionSteps = [
+    {
+      title: "We Connect",
+      description: "Bridging students with worldwide opportunities through our SEP-700 portal."
+    },
+    {
+      title: "We Back",
+      description: "Supporting students with mentorship, resources, and guidance at zero cost."
+    },
+    {
+      title: "We Aware",
+      description: "Fighting against business vendors and high fees in education."
+    }
+  ];
+
   return (
     <div className="flex flex-col min-h-screen">
       <Nav />
@@ -77,6 +94,39 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Mission Statement */}
+      <section className="py-16 bg-gradient-to-b from-white to-gray-50">
+        <div className="container mx-auto px-4">
+          <div className="max-w-3xl mx-auto text-center mb-12">
+            <h2 className="text-3xl font-bold mb-4">Who Stop's You? (WSY?)</h2>
+            <p className="text-lg text-gray-600 mb-8">
+              A Non-profit initiative dedicated to wiping out educator business vendors and tycoons that charge high fees.
+              We connect & recommend only free & non-profit organizations' programs and opportunities.
+            </p>
+          </div>
+          <Roadmap steps={missionSteps} title="Our Mission" />
+        </div>
+      </section>
+
+      {/* How It Works */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl font-bold text-center mb-12">How It Works</h2>
+          <HowItWorks />
+        </div>
+      </section>
+
+      {/* Common Queries */}
+      <section className="py-16 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl font-bold text-center mb-4">How We Help Students</h2>
+          <p className="text-lg text-gray-600 text-center max-w-3xl mx-auto mb-12">
+            Check out some of our previously resolved queries and how we can support you
+          </p>
+          <QueryTable />
+        </div>
+      </section>
+      
       {/* About Section */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
