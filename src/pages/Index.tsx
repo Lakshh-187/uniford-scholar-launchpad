@@ -5,6 +5,7 @@ import { InfoCard } from '@/components/InfoCard';
 import { QueryTable } from '@/components/QueryTable';
 import { HowItWorks } from '@/components/HowItWorks';
 import { Roadmap } from '@/components/Roadmap';
+import { PreviousQueries } from '@/components/PreviousQueries';
 import { Button } from '@/components/ui/button';
 import { Book, Users, Award, Rocket } from 'lucide-react';
 
@@ -126,6 +127,9 @@ const Index = () => {
           <QueryTable />
         </div>
       </section>
+
+      {/* Previous Queries */}
+      <PreviousQueries />
       
       {/* About Section */}
       <section className="py-16 bg-white">
