@@ -11,11 +11,13 @@ export function Nav() {
     <header className="bg-white/80 backdrop-blur-md sticky top-0 z-50 shadow-sm">
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
         <Link to="/" className="flex items-center gap-2">
-          <span className="font-bold text-2xl text-wsy-blue">WSY?</span>
-          <span className="hidden md:inline text-sm bg-wsy-teal/10 text-wsy-teal px-2 py-0.5 rounded-md">
-            Why Should You?
-          </span>
+            <span className="font-bold text-2xl text-wsy-blue">WSY?</span>
         </Link>
+        <a href="https://www.youngburg.com/who-stops-you" target="_blank" rel="noopener noreferrer" className="hidden md:inline">
+            <span className="text-sm bg-wsy-teal/10 text-wsy-teal px-2 py-0.5 rounded-md">
+                Who stop's You?
+            </span>
+        </a>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-6">
@@ -26,8 +28,8 @@ export function Nav() {
             Episode 7
           </Link>
           <Button asChild variant="secondary" size="sm">
-            <a href="#" className="ml-4">
-              Subscribe
+            <a href="https://forms.gle/ZBER68Rp2J3f9jbk8" target="_blank" rel="noopener noreferrer" className="ml-4">
+              Submit Query
             </a>
           </Button>
         </nav>
@@ -60,8 +62,13 @@ export function Nav() {
             >
               Episode 7
             </Link>
-            <Button asChild variant="secondary" size="sm" className="mt-2">
-              <a href="#">Subscribe</a>
+            <Button 
+                asChild 
+                variant="secondary" 
+                size="sm" 
+                className="mt-2"
+            >
+              <a href="https://forms.gle/ZBER68Rp2J3f9jbk8" target="_blank" rel="noopener noreferrer">Submit Query</a>
             </Button>
           </nav>
         </div>

@@ -10,24 +10,24 @@ import { CheckCircle, AlertTriangle, Award, Book, Rocket, Users } from 'lucide-r
 const Episode7 = () => {
   const roadmapSteps = [
     {
-      title: "Submit the Time-AID Application",
-      description: "Complete the initial application form to begin your journey."
+      title: "Resources to Learn ",
+      description: "Using membership card you get premium portals , kits , resources ."
     },
     {
-      title: "Upload Social Internship Certificate",
-      description: "Optional for bonus credits: Submit any previous internship certificates."
+      title: " Platform to Perform ",
+      description: "Get internship , Cohort , Project expo , Uni-pitch , Compete ."
     },
     {
-      title: "Fill the Eligibility Form",
-      description: "Complete the form on the SEP-700 Portal to verify your eligibility."
+      title: "Opportunity via profile screening ",
+      description: "Get Refreal , LOR , Recommendation, invitation & other carrer opportunities"
     },
     {
-      title: "Receive your Scholar ID Card",
-      description: "After approval, you'll receive your Uniford Scholar ID Card."
+      title: "Vintage Cohort ",
+      description: "Learn AI Automation , agents , AI Creation & build nextgen Portfolio"
     },
     {
-      title: "Unlock All Resources",
-      description: "Access all learning resources, internships, talent hunts, and referral programs."
+      title: "Uniford Talent Hunt Alliance ",
+      description: "Based on your portfolio get CAF , paid internship , Featured , profile listing & other carrer opportunities"
     }
   ];
 
@@ -222,15 +222,14 @@ const Episode7 = () => {
             <div className="text-center mb-12">
               <Badge className="mb-2 bg-wsy-teal text-white hover:bg-wsy-teal/90">Introducing</Badge>
               <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                <span className="text-wsy-teal">The Uniford Scholar ID Card</span>
+                <span className="text-wsy-teal">One ID Card. Multiple Opportunities.</span>
               </h2>
               <p className="text-lg text-gray-600">
-                A Non-Profit Global Initiative designed to connect students with FREE internships, 
-                projects, opportunities, and career-launching platforms — without any cost.
+              Build a credible portfolio, gain real-world exposure,with  internships, cohorts, AI automation tools, project expos, Uni-Pitch platforms, and career-launching opportunities — without any cost.
               </p>
               <p className="mt-4 font-medium">
-                Powered by the SEP-700 Portal, the Uniford Scholar ID Card is your all-in-one gateway 
-                to education, experience, and employment!
+              Using AI Profile Screening and Talent Hunt Alliance, students can secure referrals, Letters of Recommendation (LORs), recommendations, and career opportunities — without facing traditional filters like 
+              DSA tests, aptitude exams, or resume shortlisting barriers — unlocking millions of potentials
               </p>
             </div>
 
@@ -425,7 +424,7 @@ const Episode7 = () => {
 
             {/* Roadmap */}
             <div className="mb-12">
-              <h3 className="text-2xl font-bold mb-2 text-center">How to Apply for the Uniford Scholar ID Card</h3>
+              <h3 className="text-2xl font-bold mb-2 text-center">Using Uniford Scholar ID Card</h3>
               <p className="text-center mb-8 text-gray-600">Follow these simple steps to start your journey</p>
               
               <Roadmap steps={roadmapSteps} />
@@ -437,20 +436,28 @@ const Episode7 = () => {
               <p className="mb-6 text-lg">Without paying a single penny!</p>
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button size="lg" className="bg-wsy-blue hover:bg-wsy-blue/90">
-                  Apply for Scholar ID Card Now
+                <Button 
+                  asChild
+                  size="lg" className="bg-wsy-blue hover:bg-wsy-blue/90"><a href="https://forms.gle/n5vXF2dnc5HZsYPJ7" target='_blank'>
+                  Apply for Scholar ID Card Now</a>
                 </Button>
-                <Button variant="outline" size="lg">
+                <Button variant="outline" size="lg" asChild>
+                  <a href="https://www.youngburg.com/sep-700" target="_blank" rel="noopener noreferrer">
                   Explore SEP-700 Portal
+                  </a>
                 </Button>
               </div>
               
               <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <Button variant="link" className="text-wsy-blue">
-                  Know More About the Programs
-                </Button>
-                <Button variant="link" className="text-wsy-blue">
-                  Find Internships & Opportunities
+                 <Button variant="link" className="text-wsy-blue" asChild>
+                  <a href="https://scholar.uniford.org/id-card" target='_blank' rel="noopener noreferrer">
+                  Know More About the ID Card</a>
+                  </Button>
+
+                <Button variant="link" className="text-wsy-blue" asChild>
+                <a href="https://scholar.uniford.org/programs" target='_blank' rel="noopener noreferrer">
+                  details about program
+                  </a>
                 </Button>
               </div>
             </div>

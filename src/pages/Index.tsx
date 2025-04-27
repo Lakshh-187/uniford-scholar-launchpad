@@ -13,7 +13,7 @@ const Index = () => {
   const episodes = [
     {
       number: 7,
-      title: "Uniford Scholar ID Card",
+      title: "Query - explore the opportunities ",
       description: "Discover how the Uniford Scholar ID Card solves common career challenges for students without any fees.",
       categories: ["Career Growth", "Student Resources", "Free Opportunities"],
       link: "/episode-7",
@@ -85,12 +85,14 @@ const Index = () => {
       {/* Hero Section */}
       <section className="hero-gradient text-white py-16 md:py-24">
         <div className="container mx-auto px-4 text-center">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6">Why Should You?</h1>
+          <h1 className="text-4xl md:text-6xl font-bold mb-6">Who stop's You?</h1>
           <p className="text-xl md:text-2xl max-w-3xl mx-auto mb-8">
             Helping students navigate career challenges with practical solutions and expert guidance.
           </p>
-          <Button size="lg" className="bg-white text-wsy-blue hover:bg-slate-100">
-            Start Exploring
+          <Button asChild size="lg" className="bg-white text-wsy-blue hover:bg-slate-100">
+            <a href='https://www.youngburg.com/sep-700'>
+            Explore worldwide Opportunities
+            </a>
           </Button>
         </div>
       </section>
@@ -207,8 +209,8 @@ const Index = () => {
             <Button asChild size="lg" className="bg-white text-wsy-blue hover:bg-slate-100">
               <a href="/episode-7">Explore Episode 7</a>
             </Button>
-            <Button asChild variant="outline" size="lg" className="border-white text-white hover:bg-white/10">
-              <a href="#">Subscribe for Updates</a>
+            <Button asChild variant="outline" size="lg" className=":bg-/10">
+              <a href="https://forms.gle/ZBER68Rp2J3f9jbk8">Help Desk - Share your query</a>
             </Button>
           </div>
         </div>
