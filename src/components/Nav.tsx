@@ -30,6 +30,9 @@ export function Nav() {
           <Link to="/query" className="font-medium hover:text-wsy-blue transition-colors">
             Query
           </Link>
+          <Link to="/mentor" className="font-medium hover:text-wsy-blue transition-colors">
+            Mentor
+          </Link>
           <Button asChild variant="secondary" size="sm">
             <a href="https://forms.gle/ZBER68Rp2J3f9jbk8" target="_blank" rel="noopener noreferrer" className="ml-4">
               Submit Query
@@ -71,6 +74,13 @@ export function Nav() {
               onClick={() => setIsOpen(false)}
             >
               Query
+            </Link>
+            <Link 
+              to="/mentor" 
+              className="font-medium hover:text-wsy-blue transition-colors"
+              onClick={() => setIsOpen(false)}
+            >
+              Mentor
             </Link>
             <Button 
                 asChild 
