@@ -1,4 +1,3 @@
-
 import { Nav } from '@/components/Nav';
 import { Footer } from '@/components/Footer';
 import { useState } from 'react';
@@ -27,9 +26,13 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { FileText, File, Image, Video, Table2, Grid, Download, Search, Share2 } from 'lucide-react';
+import { 
+  FileText, File, Image, Video, Table2, Grid, Download, Search, Share2, 
+  Upload, Calendar, CheckCircle, ThumbsUp, MessageSquare, Globe 
+} from 'lucide-react';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { toast } from "@/components/ui/sonner";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 // Document data
 const featuredDocuments = [
@@ -193,6 +196,70 @@ const libraryDocuments = [
   },
 ];
 
+// Monthly solutions data
+const monthlySolutions = [
+  {
+    id: 1,
+    month: "January 2024",
+    title: "Year-end Financial Reporting Guidelines",
+    description: "Comprehensive solution for financial reporting compliance and year-end tax preparation for Unifier Scholars.",
+    category: "Finance",
+    participants: 156,
+    attachments: 3,
+    status: "Approved",
+    tags: ["Finance", "Tax", "Reporting"],
+    longDescription: "This solution provides a detailed framework for end-of-year financial reporting in compliance with the latest regulations. It includes sections on tax optimization, scholarship reporting requirements, and documentation standards for financial aid recipients."
+  },
+  {
+    id: 2,
+    month: "February 2024",
+    title: "Campus Leadership Program: Spring Cohort Structure",
+    description: "Solution framework for organizing and managing the spring cohort of the Campus Leadership Program.",
+    category: "Leadership",
+    participants: 89,
+    attachments: 5,
+    status: "Approved",
+    tags: ["Leadership", "Program Management", "Mentorship"],
+    longDescription: "A complete solution for structuring the spring cohort of our flagship Campus Leadership Program. Includes session outlines, mentorship pairing methodology, project assessment criteria, and impact measurement frameworks."
+  },
+  {
+    id: 3,
+    month: "March 2024",
+    title: "International Exchange Program Improvements",
+    description: "Proposed solutions to enhance the international exchange program based on participant feedback and outcome analysis.",
+    category: "International",
+    participants: 124,
+    attachments: 4,
+    status: "Under Review",
+    tags: ["International", "Exchange", "Program Development"],
+    longDescription: "This solution addresses key areas for improvement in our international exchange program, including hosting capacity, cultural integration support, academic credit transfer processes, and post-exchange career development opportunities."
+  },
+  {
+    id: 4,
+    month: "April 2024",
+    title: "Scholar Mentorship Platform Technical Specifications",
+    description: "Technical solution for developing the new digital platform to facilitate scholar-mentor connections.",
+    category: "Technology",
+    participants: 72,
+    attachments: 8,
+    status: "Approved",
+    tags: ["Technology", "Mentorship", "Platform"],
+    longDescription: "Comprehensive technical specifications for our new scholar mentorship platform, including system architecture, feature requirements, user flow diagrams, integration points with existing systems, and implementation timeline."
+  },
+  {
+    id: 5,
+    month: "May 2024",
+    title: "Academic Research Funding Distribution Framework",
+    description: "Solution for equitable distribution of research funding across disciplines and scholar categories.",
+    category: "Research",
+    participants: 67,
+    attachments: 2,
+    status: "Draft",
+    tags: ["Research", "Funding", "Academia"],
+    longDescription: "This solution presents a new framework for allocating research funding that balances support across disciplines while accounting for varying research costs, project durations, and potential for scholarly impact."
+  }
+];
+
 const getFileIcon = (type: string) => {
   switch(type.toLowerCase()) {
     case 'pdf':
@@ -247,6 +314,8 @@ export default function Query() {
   const [selectedType, setSelectedType] = useState('all');
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [expandedCard, setExpandedCard] = useState<number | null>(null);
+  const [solutionTab, setSolutionTab] = useState('all');
+  const [expandedSolution, setExpandedSolution] = useState<number | null>(null);
 
   const filteredDocuments = libraryDocuments.filter(doc => {
     // Filter by search query
@@ -262,6 +331,25 @@ export default function Query() {
     
     return matchesSearch && matchesType && matchesCategory;
   });
+
+  // Filter monthly solutions based on selected tab
+  const filteredSolutions = monthlySolutions.filter(solution => {
+    if (solutionTab === 'all') return true;
+    return solution.status.toLowerCase() === solutionTab.toLowerCase();
+  });
+
+  const getStatusColor = (status: string) => {
+    switch(status.toLowerCase()) {
+      case 'approved':
+        return 'bg-green-100 text-green-700';
+      case 'under review':
+        return 'bg-yellow-100 text-yellow-700';
+      case 'draft':
+        return 'bg-gray-100 text-gray-700';
+      default:
+        return 'bg-blue-100 text-blue-700';
+    }
+  };
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -591,8 +679,146 @@ export default function Query() {
         </div>
       </section>
 
+      {/* Monthly Solutions Section */}
+      <section className="py-12 bg-white">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl font-bold mb-8 text-wsy-purple">Monthly Query Solutions</h2>
+          <p className="text-gray-600 mb-8 max-w-4xl">
+            Access comprehensive solutions to monthly queries submitted by the Unifier Scholar community. 
+            These solutions are reviewed by domain experts and made available as reference materials.
+          </p>
+          
+          <Tabs defaultValue="all" className="mb-8" onValueChange={setSolutionTab}>
+            <TabsList className="grid w-full max-w-md grid-cols-3 mb-6">
+              <TabsTrigger value="all">All Solutions</TabsTrigger>
+              <TabsTrigger value="approved">Approved</TabsTrigger>
+              <TabsTrigger value="draft">In Progress</TabsTrigger>
+            </TabsList>
+          </Tabs>
+
+          <div className="grid grid-cols-1 gap-6">
+            {filteredSolutions.map(solution => (
+              <Card 
+                key={solution.id} 
+                className={`transition-all duration-300 hover:shadow-lg cursor-pointer ${
+                  expandedSolution === solution.id ? 'border-wsy-purple' : ''
+                }`}
+                onClick={() => setExpandedSolution(expandedSolution === solution.id ? null : solution.id)}
+              >
+                <CardHeader className="flex flex-row items-start justify-between gap-4 bg-gray-50">
+                  <div className="flex items-start gap-4">
+                    <div className="flex items-center justify-center bg-wsy-purple text-white w-12 h-12 rounded-full shrink-0">
+                      <Calendar className="h-6 w-6" />
+                    </div>
+                    <div>
+                      <div className="flex items-center gap-2 mb-1">
+                        <span className="text-sm font-medium text-gray-500">{solution.month}</span>
+                        <span className={`inline-block px-3 py-1 rounded-full text-xs font-semibold ${getStatusColor(solution.status)}`}>
+                          {solution.status}
+                        </span>
+                      </div>
+                      <CardTitle className="text-xl">{solution.title}</CardTitle>
+                      <CardDescription className="text-sm">{solution.description}</CardDescription>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className={`inline-block px-3 py-1 rounded-full text-xs font-semibold ${
+                      solution.category === 'Finance' ? 'bg-blue-100 text-blue-700' : 
+                      solution.category === 'Leadership' ? 'bg-purple-100 text-purple-700' : 
+                      solution.category === 'International' ? 'bg-green-100 text-green-700' : 
+                      solution.category === 'Technology' ? 'bg-orange-100 text-orange-700' : 
+                      'bg-gray-100 text-gray-700'
+                    }`}>
+                      {solution.category}
+                    </span>
+                  </div>
+                </CardHeader>
+                
+                {expandedSolution === solution.id && (
+                  <CardContent className="pt-4 animate-in fade-in duration-200">
+                    <div className="bg-gray-50 p-4 rounded-md mb-4">
+                      <h4 className="font-semibold text-gray-800 mb-2">Solution Overview:</h4>
+                      <p className="text-gray-700">{solution.longDescription}</p>
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div className="bg-gray-50 p-4 rounded-md">
+                        <h4 className="font-semibold text-gray-800 mb-2">Solution Details:</h4>
+                        <ul className="space-y-2 text-gray-700">
+                          <li className="flex items-center gap-2">
+                            <MessageSquare className="h-4 w-4 text-wsy-purple" />
+                            <span><strong>{solution.participants}</strong> participants in discussion</span>
+                          </li>
+                          <li className="flex items-center gap-2">
+                            <FileText className="h-4 w-4 text-wsy-purple" />
+                            <span><strong>{solution.attachments}</strong> supporting documents</span>
+                          </li>
+                          <li className="flex items-center gap-2">
+                            <Globe className="h-4 w-4 text-wsy-purple" />
+                            <span>Published for {solution.status === 'Approved' ? 'all scholars' : 'reviewers only'}</span>
+                          </li>
+                        </ul>
+                      </div>
+                      <div className="bg-gray-50 p-4 rounded-md">
+                        <h4 className="font-semibold text-gray-800 mb-2">Tags:</h4>
+                        <div className="flex flex-wrap gap-2">
+                          {solution.tags.map(tag => (
+                            <span key={tag} className="bg-white px-2 py-1 rounded text-xs border border-gray-200">
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </CardContent>
+                )}
+                
+                <CardFooter className="flex justify-between border-t pt-4">
+                  <div className="flex items-center gap-2">
+                    <span className="flex items-center text-sm text-gray-500">
+                      <CheckCircle className="h-4 w-4 mr-1 text-green-500" />
+                      Peer reviewed
+                    </span>
+                    <span className="flex items-center text-sm text-gray-500">
+                      <ThumbsUp className="h-4 w-4 mr-1 text-blue-500" />
+                      Recommended
+                    </span>
+                  </div>
+                  <div className="flex gap-2">
+                    <Button variant="outline" onClick={(e) => {
+                      e.stopPropagation();
+                      shareDocument(solution.title);
+                    }}>
+                      <Share2 className="h-4 w-4" />
+                      Share
+                    </Button>
+                    {solution.status === 'Approved' ? (
+                      <Button>
+                        <Download className="mr-2 h-4 w-4" />
+                        Download
+                      </Button>
+                    ) : (
+                      <Button variant="outline" disabled={solution.status === 'Draft'}>
+                        <Upload className="mr-2 h-4 w-4" />
+                        Submit Feedback
+                      </Button>
+                    )}
+                  </div>
+                </CardFooter>
+              </Card>
+            ))}
+          </div>
+          
+          <div className="mt-8 text-center">
+            <Button size="lg" variant="outline" className="border-dashed border-2">
+              <Upload className="mr-2 h-4 w-4" />
+              Submit New Solution
+            </Button>
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section */}
-      <section className="py-16 bg-white text-center">
+      <section className="py-16 bg-gray-50 text-center">
         <div className="container mx-auto px-4">
           <h2 className="text-2xl font-bold mb-4">Can't Find What You're Looking For?</h2>
           <p className="text-gray-600 mb-6 max-w-lg mx-auto">
