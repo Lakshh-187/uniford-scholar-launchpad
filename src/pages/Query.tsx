@@ -27,8 +27,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { FileText, File, Image, Video, Table2, Grid, Download, Search } from 'lucide-react';
+import { FileText, File, Image, Video, Table2, Grid, Download, Search, Share2 } from 'lucide-react';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import { toast } from "@/components/ui/sonner";
 
 // Document data
 const featuredDocuments = [
@@ -212,6 +213,34 @@ const getFileIcon = (type: string) => {
   }
 };
 
+const shareDocument = (documentTitle: string) => {
+  // In a real application, this would use the Web Share API or create a shareable link
+  if (navigator.share) {
+    navigator.share({
+      title: documentTitle,
+      text: `Check out this document: ${documentTitle}`,
+      url: window.location.href,
+    })
+      .then(() => console.log('Successful share'))
+      .catch((error) => console.log('Error sharing', error));
+  } else {
+    // Fallback for browsers that don't support the Web Share API
+    const url = window.location.href;
+    navigator.clipboard.writeText(url).then(
+      () => {
+        toast("Link copied to clipboard", {
+          description: `Share link for "${documentTitle}" copied to clipboard`,
+        });
+      },
+      () => {
+        toast("Failed to copy link", { 
+          description: "Please try again or copy the URL manually"
+        });
+      }
+    );
+  }
+};
+
 export default function Query() {
   const [view, setView] = useState<'table' | 'grid'>('table');
   const [searchQuery, setSearchQuery] = useState('');
@@ -380,10 +409,19 @@ export default function Query() {
                     <p className="text-sm text-gray-500">{doc.downloads.toLocaleString()} downloads</p>
                     <span className="text-xs bg-gray-100 px-2 py-1 rounded-full">Updated: May 2024</span>
                   </div>
-                  <Button>
-                    <Download className="mr-2 h-4 w-4" />
-                    Download
-                  </Button>
+                  <div className="flex gap-2">
+                    <Button variant="outline" onClick={(e) => {
+                      e.stopPropagation();
+                      shareDocument(doc.title);
+                    }}>
+                      <Share2 className="h-4 w-4" />
+                      Share
+                    </Button>
+                    <Button>
+                      <Download className="mr-2 h-4 w-4" />
+                      Download
+                    </Button>
+                  </div>
                 </CardFooter>
               </Card>
             ))}
@@ -496,9 +534,14 @@ export default function Query() {
                       <TableCell>{doc.size}</TableCell>
                       <TableCell>{doc.downloads.toLocaleString()}</TableCell>
                       <TableCell className="text-right">
-                        <Button size="sm" variant="outline">
-                          <Download className="h-4 w-4 mr-1" /> Download
-                        </Button>
+                        <div className="flex gap-2 justify-end">
+                          <Button size="sm" variant="outline" onClick={() => shareDocument(doc.title)}>
+                            <Share2 className="h-4 w-4" />
+                          </Button>
+                          <Button size="sm" variant="outline">
+                            <Download className="h-4 w-4 mr-1" /> Download
+                          </Button>
+                        </div>
                       </TableCell>
                     </TableRow>
                   ))}
@@ -533,8 +576,11 @@ export default function Query() {
                       <span>{doc.downloads.toLocaleString()}</span>
                     </div>
                   </CardContent>
-                  <CardFooter className="pt-2 border-t">
-                    <Button className="w-full">
+                  <CardFooter className="pt-2 border-t flex justify-between">
+                    <Button variant="outline" onClick={() => shareDocument(doc.title)}>
+                      <Share2 className="h-4 w-4" /> Share
+                    </Button>
+                    <Button>
                       <Download className="mr-2 h-4 w-4" /> Download
                     </Button>
                   </CardFooter>
