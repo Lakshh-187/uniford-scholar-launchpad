@@ -1,11 +1,12 @@
 
 import { Link } from 'react-router-dom';
+import { Linkedin, Instagram } from 'lucide-react';
 
 export function Footer() {
   return (
     <footer className="bg-slate-900 text-white">
       <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
             <h3 className="text-xl font-bold mb-4">WSY?</h3>
             <p className="text-slate-300">
@@ -19,13 +20,35 @@ export function Footer() {
             <ul className="space-y-2 text-slate-300">
               <li><Link to="/" className="hover:text-wsy-teal transition-colors">Home</Link></li>
               <li><Link to="/episode-7" className="hover:text-wsy-teal transition-colors">Episode 7</Link></li>
+              <li><Link to="/query" className="hover:text-wsy-teal transition-colors">Query</Link></li>
               <li><a href="#" className="hover:text-wsy-teal transition-colors">About Us</a></li>
-              <li><a href="#" className="hover:text-wsy-teal transition-colors">Contact</a></li>
             </ul>
           </div>
           
           <div>
-           
+            <h3 className="text-xl font-bold mb-4">Programs</h3>
+            <ul className="space-y-2 text-slate-300">
+              <li><a href="#" className="hover:text-wsy-teal transition-colors">Campus to Corporate</a></li>
+              <li><a href="#" className="hover:text-wsy-teal transition-colors">Entrepreneurship</a></li>
+              <li><a href="#" className="hover:text-wsy-teal transition-colors">Leadership</a></li>
+              <li><a href="#" className="hover:text-wsy-teal transition-colors">Internships</a></li>
+            </ul>
+          </div>
+          
+          <div>
+            <h3 className="text-xl font-bold mb-4">Connect</h3>
+            <ul className="space-y-2 text-slate-300">
+              <li><a href="#" className="hover:text-wsy-teal transition-colors">Contact Us</a></li>
+              <li><a href="https://forms.gle/ZBER68Rp2J3f9jbk8" target="_blank" rel="noopener noreferrer" className="hover:text-wsy-teal transition-colors">Submit Query</a></li>
+            </ul>
+            <div className="flex space-x-4 mt-4">
+              <a href="#" className="text-slate-300 hover:text-white transition-colors">
+                <Linkedin size={24} />
+              </a>
+              <a href="#" className="text-slate-300 hover:text-white transition-colors">
+                <Instagram size={24} />
+              </a>
+            </div>
           </div>
         </div>
         

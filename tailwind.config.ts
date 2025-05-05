@@ -69,7 +69,8 @@ export default {
 					purple: '#7e22ce',
 					accent: '#f97316',
 					light: '#f0f9ff',
-					dark: '#0f172a'
+					dark: '#0f172a',
+					purple: '#6C3BD1'  // Added the purple color for the query page
 				}
 			},
 			borderRadius: {

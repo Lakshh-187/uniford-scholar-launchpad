@@ -27,6 +27,9 @@ export function Nav() {
           <Link to="/episode-7" className="font-medium hover:text-wsy-blue transition-colors">
             Episode 7
           </Link>
+          <Link to="/query" className="font-medium hover:text-wsy-blue transition-colors">
+            Query
+          </Link>
           <Button asChild variant="secondary" size="sm">
             <a href="https://forms.gle/ZBER68Rp2J3f9jbk8" target="_blank" rel="noopener noreferrer" className="ml-4">
               Submit Query
@@ -61,6 +64,13 @@ export function Nav() {
               onClick={() => setIsOpen(false)}
             >
               Episode 7
+            </Link>
+            <Link 
+              to="/query" 
+              className="font-medium hover:text-wsy-blue transition-colors"
+              onClick={() => setIsOpen(false)}
+            >
+              Query
             </Link>
             <Button 
                 asChild 
