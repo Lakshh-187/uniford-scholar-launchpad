@@ -1,3 +1,4 @@
+
 import { Nav } from '@/components/Nav';
 import { Footer } from '@/components/Footer';
 import { useState } from 'react';
@@ -27,6 +28,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { FileText, File, Image, Video, Table2, Grid, Download, Search } from 'lucide-react';
+import { ScrollArea } from '@/components/ui/scroll-area';
 
 // Document data
 const featuredDocuments = [
@@ -36,6 +38,8 @@ const featuredDocuments = [
     type: "pdf",
     description: "Complete guide for transitioning from campus to corporate environment",
     downloads: 3250,
+    category: "Career Development",
+    longDescription: "A comprehensive roadmap for students to transition from academic life to professional work environments. This guide covers everything from resume building and interview preparation to workplace etiquette and professional communication."
   },
   {
     id: 2,
@@ -43,6 +47,8 @@ const featuredDocuments = [
     type: "pdf",
     description: "A booklet covering all scholar benefits and privileges",
     downloads: 5230,
+    category: "Benefits & Privileges",
+    longDescription: "An official compilation of all benefits, privileges, and opportunities available to Unifier Scholars. Includes details on mentorship programs, networking events, financial support options, and career advancement resources."
   },
   {
     id: 3,
@@ -50,6 +56,8 @@ const featuredDocuments = [
     type: "ppt",
     description: "Empowering scholars to lead and grow within the community",
     downloads: 1430,
+    category: "Leadership",
+    longDescription: "Detailed presentation on the structure, responsibilities, and opportunities within the Uniford Scholar Council. Learn how to join the council, contribute to community initiatives, and develop leadership skills through practical experience."
   },
   {
     id: 4,
@@ -57,6 +65,8 @@ const featuredDocuments = [
     type: "pdf",
     description: "Roadmap for student entrepreneurs & leaders initiatives",
     downloads: 2670,
+    category: "Professional Development",
+    longDescription: "Advanced leadership curriculum developed by Young Leaders Society (YLS) specifically for emerging student entrepreneurs and community leaders. This document outlines key competencies, case studies, and practical exercises to build management capabilities."
   },
   {
     id: 5,
@@ -64,6 +74,8 @@ const featuredDocuments = [
     type: "pdf",
     description: "Unlock entrepreneurial potential with cutting-edge AI programs",
     downloads: 3120,
+    category: "Entrepreneurship",
+    longDescription: "Comprehensive guide on entrepreneurial development integrated with financial literacy education. Includes sections on business model development, startup funding options, financial planning, and leveraging AI technologies in modern business environments."
   },
   {
     id: 6,
@@ -71,9 +83,12 @@ const featuredDocuments = [
     type: "pdf",
     description: "Uncover the truth about scams, myths, and facts to make informed decisions",
     downloads: 980,
+    category: "Awareness",
+    longDescription: "Educational campaign materials designed to help scholars identify and avoid common scams targeting students and early-career professionals. Includes sections on identifying legitimate opportunities, protecting personal information, and reporting suspicious activities."
   },
 ];
 
+// Library documents data
 const libraryDocuments = [
   {
     id: 1,
@@ -202,6 +217,7 @@ export default function Query() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedType, setSelectedType] = useState('all');
   const [selectedCategory, setSelectedCategory] = useState('all');
+  const [expandedCard, setExpandedCard] = useState<number | null>(null);
 
   const filteredDocuments = libraryDocuments.filter(doc => {
     // Filter by search query
@@ -291,27 +307,80 @@ export default function Query() {
         </div>
       </div>
 
-      {/* Featured Documents Section */}
+      {/* New Expanded Featured Documents Section */}
       <section className="py-12 bg-white">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold mb-8">Featured Documents</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <h2 className="text-3xl font-bold mb-8 text-wsy-purple">Featured Educational Resources</h2>
+          
+          <div className="grid grid-cols-1 gap-6">
             {featuredDocuments.map(doc => (
-              <Card key={doc.id} className="hover:shadow-lg transition-shadow">
-                <CardHeader className="bg-gray-50">
-                  <div className="flex items-center gap-2">
+              <Card 
+                key={doc.id} 
+                className={`transition-all duration-300 hover:shadow-lg cursor-pointer ${
+                  expandedCard === doc.id ? 'border-wsy-purple' : ''
+                }`}
+                onClick={() => setExpandedCard(expandedCard === doc.id ? null : doc.id)}
+              >
+                <CardHeader className="flex flex-row items-start justify-between gap-4 bg-gray-50">
+                  <div className="flex items-start gap-4">
                     {getFileIcon(doc.type)}
-                    <CardTitle className="text-lg">{doc.title}</CardTitle>
+                    <div>
+                      <CardTitle className="text-xl">{doc.title}</CardTitle>
+                      <CardDescription className="text-sm">{doc.description}</CardDescription>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className={`inline-block px-3 py-1 rounded-full text-xs font-semibold ${
+                      doc.category === 'Career Development' ? 'bg-blue-100 text-blue-700' : 
+                      doc.category === 'Benefits & Privileges' ? 'bg-green-100 text-green-700' : 
+                      doc.category === 'Leadership' ? 'bg-purple-100 text-purple-700' : 
+                      doc.category === 'Professional Development' ? 'bg-orange-100 text-orange-700' : 
+                      doc.category === 'Entrepreneurship' ? 'bg-yellow-100 text-yellow-700' : 
+                      'bg-gray-100 text-gray-700'
+                    }`}>
+                      {doc.category}
+                    </span>
+                    <span className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded-full">
+                      {doc.type.toUpperCase()}
+                    </span>
                   </div>
                 </CardHeader>
-                <CardContent className="pt-4">
-                  <CardDescription className="text-sm min-h-16">
-                    {doc.description}
-                  </CardDescription>
-                </CardContent>
+                
+                {expandedCard === doc.id && (
+                  <CardContent className="pt-4 animate-in fade-in duration-200">
+                    <div className="bg-gray-50 p-4 rounded-md mb-4">
+                      <h4 className="font-semibold text-gray-800 mb-2">About this resource:</h4>
+                      <p className="text-gray-700">{doc.longDescription}</p>
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div className="bg-gray-50 p-4 rounded-md">
+                        <h4 className="font-semibold text-gray-800 mb-2">Who should read this:</h4>
+                        <ul className="list-disc list-inside text-gray-700 space-y-1">
+                          <li>Students transitioning to professional environments</li>
+                          <li>Early-career professionals seeking guidance</li>
+                          <li>Mentors and educators supporting student development</li>
+                        </ul>
+                      </div>
+                      <div className="bg-gray-50 p-4 rounded-md">
+                        <h4 className="font-semibold text-gray-800 mb-2">Key topics covered:</h4>
+                        <div className="flex flex-wrap gap-2">
+                          {['Professional Growth', 'Career Planning', 'Skill Development', 'Leadership', 'Communication'].map(topic => (
+                            <span key={topic} className="bg-white px-2 py-1 rounded text-xs border border-gray-200">
+                              {topic}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </CardContent>
+                )}
+                
                 <CardFooter className="flex justify-between border-t pt-4">
-                  <p className="text-sm text-gray-500">{doc.downloads.toLocaleString()} downloads</p>
-                  <Button size="sm">
+                  <div className="flex items-center gap-2">
+                    <p className="text-sm text-gray-500">{doc.downloads.toLocaleString()} downloads</p>
+                    <span className="text-xs bg-gray-100 px-2 py-1 rounded-full">Updated: May 2024</span>
+                  </div>
+                  <Button>
                     <Download className="mr-2 h-4 w-4" />
                     Download
                   </Button>
