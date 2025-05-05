@@ -1,4 +1,3 @@
-
 import { Nav } from '@/components/Nav';
 import { Footer } from '@/components/Footer';
 import { useState } from 'react';
@@ -27,7 +26,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { FilePdf, FileText, FileImage, FileVideo, Table2, Grid, Download, Search } from 'lucide-react';
+import { FileText, File, Image, Video, Table2, Grid, Download, Search } from 'lucide-react';
 
 // Document data
 const featuredDocuments = [
@@ -181,7 +180,7 @@ const libraryDocuments = [
 const getFileIcon = (type: string) => {
   switch(type.toLowerCase()) {
     case 'pdf':
-      return <FilePdf className="text-red-500" />;
+      return <File className="text-red-500" />;
     case 'ppt':
       return <FileText className="text-orange-500" />;
     case 'doc':
@@ -190,9 +189,9 @@ const getFileIcon = (type: string) => {
     case 'img':
     case 'png':
     case 'jpg':
-      return <FileImage className="text-green-500" />;
+      return <Image className="text-green-500" />;
     case 'video':
-      return <FileVideo className="text-purple-500" />;
+      return <Video className="text-purple-500" />;
     default:
       return <FileText className="text-gray-500" />;
   }
@@ -257,7 +256,7 @@ export default function Query() {
               variant={selectedType === 'pdf' ? "default" : "outline"}
               onClick={() => setSelectedType('pdf')}
             >
-              <FilePdf className="mr-2 h-4 w-4" />
+              <File className="mr-2 h-4 w-4" />
               PDF
             </Button>
             <Button 
@@ -278,14 +277,14 @@ export default function Query() {
               variant={selectedType === 'img' ? "default" : "outline"}
               onClick={() => setSelectedType('img')}
             >
-              <FileImage className="mr-2 h-4 w-4" />
+              <Image className="mr-2 h-4 w-4" />
               Image
             </Button>
             <Button 
               variant={selectedType === 'video' ? "default" : "outline"}
               onClick={() => setSelectedType('video')}
             >
-              <FileVideo className="mr-2 h-4 w-4" />
+              <Video className="mr-2 h-4 w-4" />
               Video
             </Button>
           </div>
