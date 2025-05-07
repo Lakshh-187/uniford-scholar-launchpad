@@ -45,51 +45,7 @@ const featuredDocuments = [
     category: "Career Development",
     longDescription: "A comprehensive roadmap for students to transition from academic life to professional work environments. This guide covers everything from resume building and interview preparation to workplace etiquette and professional communication."
   },
-  {
-    id: 2,
-    title: "Scholar Benefits Booklet",
-    type: "pdf",
-    description: "A booklet covering all scholar benefits and privileges",
-    downloads: 5230,
-    category: "Benefits & Privileges",
-    longDescription: "An official compilation of all benefits, privileges, and opportunities available to Unifier Scholars. Includes details on mentorship programs, networking events, financial support options, and career advancement resources."
-  },
-  {
-    id: 3,
-    title: "Uniford Scholar Council",
-    type: "ppt",
-    description: "Empowering scholars to lead and grow within the community",
-    downloads: 1430,
-    category: "Leadership",
-    longDescription: "Detailed presentation on the structure, responsibilities, and opportunities within the Uniford Scholar Council. Learn how to join the council, contribute to community initiatives, and develop leadership skills through practical experience."
-  },
-  {
-    id: 4,
-    title: "Leadership & Management by YLS",
-    type: "pdf",
-    description: "Roadmap for student entrepreneurs & leaders initiatives",
-    downloads: 2670,
-    category: "Professional Development",
-    longDescription: "Advanced leadership curriculum developed by Young Leaders Society (YLS) specifically for emerging student entrepreneurs and community leaders. This document outlines key competencies, case studies, and practical exercises to build management capabilities."
-  },
-  {
-    id: 5,
-    title: "Entrepreneurship & Financial Literacy",
-    type: "pdf",
-    description: "Unlock entrepreneurial potential with cutting-edge AI programs",
-    downloads: 3120,
-    category: "Entrepreneurship",
-    longDescription: "Comprehensive guide on entrepreneurial development integrated with financial literacy education. Includes sections on business model development, startup funding options, financial planning, and leveraging AI technologies in modern business environments."
-  },
-  {
-    id: 6,
-    title: "Illusion - A Black Hole Campaign",
-    type: "pdf",
-    description: "Uncover the truth about scams, myths, and facts to make informed decisions",
-    downloads: 980,
-    category: "Awareness",
-    longDescription: "Educational campaign materials designed to help scholars identify and avoid common scams targeting students and early-career professionals. Includes sections on identifying legitimate opportunities, protecting personal information, and reporting suspicious activities."
-  },
+  
 ];
 
 // Library documents data
@@ -104,96 +60,7 @@ const libraryDocuments = [
     size: "4.2 MB",
     downloads: 3250,
   },
-  {
-    id: 2,
-    title: "Platforms & Programs",
-    description: "Outsources platforms & old curriculum Program",
-    category: "Guide",
-    type: "pdf",
-    date: "8/15/2023",
-    size: "4.2 MB",
-    downloads: 3250,
-  },
-  {
-    id: 3,
-    title: "Uniford Platforms & Programs",
-    description: "Step-by-step roadmap for transitioning from campus to corporate",
-    category: "Guide",
-    type: "pdf",
-    date: "9/22/2024",
-    size: "2.8 MB",
-    downloads: 2180,
-  },
-  {
-    id: 4,
-    title: "Uniford Portals",
-    description: "Email: info@uniford.org & password 1 to 8 in uniford.org",
-    category: "Guides",
-    type: "pdf",
-    date: "7/10/2023",
-    size: "3.5 MB",
-    downloads: 4120,
-  },
-  {
-    id: 5,
-    title: "Intern in organization",
-    description: "on-boarding detail & benefits",
-    category: "Guide",
-    type: "pdf",
-    date: "10/5/2023",
-    size: "1.2 MB",
-    downloads: 1850,
-  },
-  {
-    id: 6,
-    title: "Scholar Benefits Booklet",
-    description: "a booklet cover scholar benefits",
-    category: "Guide",
-    type: "pdf",
-    date: "11/12/2023",
-    size: "0.8 MB",
-    downloads: 5230,
-  },
-  {
-    id: 7,
-    title: "Scholar Guide 2023 old",
-    description: "Guidelines and rules for participating using ID card",
-    category: "Guides",
-    type: "pdf",
-    date: "12/1/2023",
-    size: "2.1 MB",
-    downloads: 1920,
-  },
-  {
-    id: 8,
-    title: "Uniford Scholar Council",
-    description: "Empowering scholars to lead and grow",
-    category: "Guide",
-    type: "ppt",
-    date: "1/15/2024",
-    size: "5.6 MB",
-    downloads: 1430,
-  },
-  {
-    id: 9,
-    title: "Leadership & Management by YLS",
-    description: "Roadmap for student entrepreneurs & initiator",
-    category: "Roadmaps",
-    type: "pdf",
-    date: "2/20/2024",
-    size: "3.2 MB",
-    downloads: 2670,
-  },
-  {
-    id: 10,
-    title: "Entrepreneurship (AI & Financial Literacy Advancement)",
-    description: "Unlock entrepreneurial potential with cutting-edge AI and financial literacy programs",
-    category: "Guides",
-    type: "pdf",
-    date: "3/8/2024",
-    size: "1.5 MB",
-    downloads: 3120,
-  },
+ 
 ];
 
 // Monthly solutions data
@@ -210,54 +77,7 @@ const monthlySolutions = [
     tags: ["Finance", "Tax", "Reporting"],
     longDescription: "This solution provides a detailed framework for end-of-year financial reporting in compliance with the latest regulations. It includes sections on tax optimization, scholarship reporting requirements, and documentation standards for financial aid recipients."
   },
-  {
-    id: 2,
-    month: "February 2024",
-    title: "Campus Leadership Program: Spring Cohort Structure",
-    description: "Solution framework for organizing and managing the spring cohort of the Campus Leadership Program.",
-    category: "Leadership",
-    participants: 89,
-    attachments: 5,
-    status: "Approved",
-    tags: ["Leadership", "Program Management", "Mentorship"],
-    longDescription: "A complete solution for structuring the spring cohort of our flagship Campus Leadership Program. Includes session outlines, mentorship pairing methodology, project assessment criteria, and impact measurement frameworks."
-  },
-  {
-    id: 3,
-    month: "March 2024",
-    title: "International Exchange Program Improvements",
-    description: "Proposed solutions to enhance the international exchange program based on participant feedback and outcome analysis.",
-    category: "International",
-    participants: 124,
-    attachments: 4,
-    status: "Under Review",
-    tags: ["International", "Exchange", "Program Development"],
-    longDescription: "This solution addresses key areas for improvement in our international exchange program, including hosting capacity, cultural integration support, academic credit transfer processes, and post-exchange career development opportunities."
-  },
-  {
-    id: 4,
-    month: "April 2024",
-    title: "Scholar Mentorship Platform Technical Specifications",
-    description: "Technical solution for developing the new digital platform to facilitate scholar-mentor connections.",
-    category: "Technology",
-    participants: 72,
-    attachments: 8,
-    status: "Approved",
-    tags: ["Technology", "Mentorship", "Platform"],
-    longDescription: "Comprehensive technical specifications for our new scholar mentorship platform, including system architecture, feature requirements, user flow diagrams, integration points with existing systems, and implementation timeline."
-  },
-  {
-    id: 5,
-    month: "May 2024",
-    title: "Academic Research Funding Distribution Framework",
-    description: "Solution for equitable distribution of research funding across disciplines and scholar categories.",
-    category: "Research",
-    participants: 67,
-    attachments: 2,
-    status: "Draft",
-    tags: ["Research", "Funding", "Academia"],
-    longDescription: "This solution presents a new framework for allocating research funding that balances support across disciplines while accounting for varying research costs, project durations, and potential for scholarly impact."
-  }
+  
 ];
 
 const getFileIcon = (type: string) => {
