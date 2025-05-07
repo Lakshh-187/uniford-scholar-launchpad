@@ -13,11 +13,11 @@ export function Nav() {
         <Link to="/" className="flex items-center gap-2">
             <span className="font-bold text-2xl text-wsy-blue">WSY?</span>
         </Link>
-        <a href="https://www.youngburg.com/who-stops-you" target="_blank" rel="noopener noreferrer" className="hidden md:inline">
-            <span className="text-sm bg-wsy-teal/10 text-wsy-teal px-2 py-0.5 rounded-md">
-                Who stop's You?
-            </span>
-        </a>
+         <Button asChild variant="youngburg" size="sm" className='hidden md:inline'>
+            <a href="https://www.uniwave.in/" target="_blank" rel="noopener noreferrer">
+              Youngburg
+            </a>
+          </Button>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-6">

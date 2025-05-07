@@ -1,6 +1,5 @@
 
 import { Link } from 'react-router-dom';
-import { Linkedin, Instagram } from 'lucide-react';
 
 export function Footer() {
   return (
@@ -41,14 +40,6 @@ export function Footer() {
               <li><a href="#" className="hover:text-wsy-teal transition-colors">Contact Us</a></li>
               <li><a href="https://forms.gle/ZBER68Rp2J3f9jbk8" target="_blank" rel="noopener noreferrer" className="hover:text-wsy-teal transition-colors">Submit Query</a></li>
             </ul>
-            <div className="flex space-x-4 mt-4">
-              <a href="#" className="text-slate-300 hover:text-white transition-colors">
-                <Linkedin size={24} />
-              </a>
-              <a href="#" className="text-slate-300 hover:text-white transition-colors">
-                <Instagram size={24} />
-              </a>
-            </div>
           </div>
         </div>
         
