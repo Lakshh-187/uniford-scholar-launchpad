@@ -20,7 +20,7 @@ export function Footer() {
               <li><Link to="/" className="hover:text-wsy-teal transition-colors">Home</Link></li>
               <li><Link to="/episode-7" className="hover:text-wsy-teal transition-colors">Episode 7</Link></li>
               <li><Link to="/query" className="hover:text-wsy-teal transition-colors">Query</Link></li>
-              <li><a href="#" className="hover:text-wsy-teal transition-colors">About Us</a></li>
+              <li><Link to="/mentor" className="hover:text-wsy-teal transition-colors">Mentor</Link></li>
             </ul>
           </div>
           

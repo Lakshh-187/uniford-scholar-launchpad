@@ -66,11 +66,10 @@ export default {
 				wsy: {
 					blue: '#1e40af',
 					teal: '#0d9488',
-					purple: '#7e22ce',
+					purple: '#6C3BD1',
 					accent: '#f97316',
 					light: '#f0f9ff',
-					dark: '#0f172a',
-					purple: '#6C3BD1'  // Added the purple color for the query page
+					dark: '#0f172a'
 				}
 			},
 			borderRadius: {
