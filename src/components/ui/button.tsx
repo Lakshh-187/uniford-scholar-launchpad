@@ -11,6 +11,7 @@ const buttonVariants = cva(
     variants: {
       variant: {
         youngburg:"bg-wsy-teal/20 text-wsy-teal hover:bg-wsy-teal/40",
+        teal: "bg-wsy-teal text-white hover:bg-wsy-teal/90",
         default: "bg-primary text-primary-foreground hover:bg-primary/90",
         destructive:
           "bg-destructive text-destructive-foreground hover:bg-destructive/90",
