@@ -3,7 +3,17 @@ import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { MessageSquare, ArrowRight, Calendar, CheckCircle, Tag } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import { QueryDetailsDialog } from "@/components/QueryDetailsDialog";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination";
 
 const queries = [
   {
@@ -90,8 +100,17 @@ const queries = [
 ];
 
 export function PreviousQueries() {
-  const currentQueries = queries.filter(q => q.status !== "Coming Soon").slice(0, 7);
+  const [currentPage, setCurrentPage] = useState(1);
+  const queriesPerPage = 6;
+  
+  // Calculate current queries
+  const indexOfLastQuery = currentPage * queriesPerPage;
+  const indexOfFirstQuery = indexOfLastQuery - queriesPerPage;
+  const currentQueries = queries.filter(q => q.status !== "Coming Soon").slice(indexOfFirstQuery, indexOfLastQuery);
   const comingSoonQueries = queries.filter(q => q.status === "Coming Soon");
+  
+  // Calculate total pages
+  const totalPages = Math.ceil(queries.filter(q => q.status !== "Coming Soon").length / queriesPerPage);
   
   const [selectedQuery, setSelectedQuery] = useState<(typeof queries)[0] | null>(null);
   const [dialogOpen, setDialogOpen] = useState(false);
@@ -101,20 +120,20 @@ export function PreviousQueries() {
     setDialogOpen(true);
   };
 
-  const getStatusColor = (status: string) => {
+  const getStatusBadge = (status: string) => {
     switch(status) {
       case "Resolved":
-        return "bg-green-100 text-green-700 border-green-300";
+        return "success";
       case "Trending":
-        return "bg-orange-100 text-orange-700 border-orange-300";
+        return "warning";
       case "Featured":
-        return "bg-purple-100 text-purple-700 border-purple-300";
+        return "purple";
       case "In Review":
-        return "bg-blue-100 text-blue-700 border-blue-300";
+        return "info";
       case "Coming Soon":
-        return "bg-gray-100 text-gray-500 border-gray-300";
+        return "gray";
       default:
-        return "bg-gray-100 text-gray-700 border-gray-300";
+        return "gray";
     }
   };
 
@@ -132,12 +151,12 @@ export function PreviousQueries() {
           {/* Active Queries */}
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {currentQueries.map((query, index) => (
-              <Card key={index} className="hover:shadow-lg transition-shadow overflow-hidden border-t-4 border-t-wsy-teal">
+              <Card key={query.id} className="hover:shadow-lg transition-shadow overflow-hidden border-t-4 border-t-wsy-teal">
                 <CardHeader className="flex flex-row items-center justify-between pb-2">
                   <div className="flex items-center gap-2">
-                    <span className={`px-3 py-1 text-xs font-semibold rounded-full ${getStatusColor(query.status)}`}>
+                    <Badge variant={getStatusBadge(query.status)}>
                       {query.status}
-                    </span>
+                    </Badge>
                     <span className="text-xs text-gray-500 flex items-center">
                       <Calendar className="h-3 w-3 mr-1" />
                       {query.date}
@@ -170,35 +189,88 @@ export function PreviousQueries() {
           </div>
 
           {/* Pagination */}
-          <div className="mt-6">
+          <div className="mt-8 flex justify-center">
             <Pagination>
               <PaginationContent>
                 <PaginationItem>
-                  <PaginationPrevious href="#" />
+                  <PaginationPrevious 
+                    href="#" 
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setCurrentPage(prev => Math.max(prev - 1, 1));
+                    }}
+                    className={currentPage === 1 ? "pointer-events-none opacity-50" : ""}
+                  />
                 </PaginationItem>
+                
+                {Array.from({ length: Math.min(totalPages, 7) }).map((_, i) => {
+                  // Calculate which page numbers to show
+                  let pageNumber;
+                  if (totalPages <= 7) {
+                    pageNumber = i + 1;
+                  } else if (currentPage <= 3) {
+                    // Near the start
+                    if (i < 5) {
+                      pageNumber = i + 1;
+                    } else if (i === 5) {
+                      // Show ellipsis instead of a number
+                      return <PaginationItem key="ellipsis-end"><PaginationEllipsis /></PaginationItem>;
+                    } else {
+                      pageNumber = totalPages;
+                    }
+                  } else if (currentPage >= totalPages - 2) {
+                    // Near the end
+                    if (i === 0) {
+                      pageNumber = 1;
+                    } else if (i === 1) {
+                      // Show ellipsis instead of a number
+                      return <PaginationItem key="ellipsis-start"><PaginationEllipsis /></PaginationItem>;
+                    } else {
+                      pageNumber = totalPages - (6 - i);
+                    }
+                  } else {
+                    // In the middle
+                    if (i === 0) {
+                      pageNumber = 1;
+                    } else if (i === 1) {
+                      // Show ellipsis instead of a number
+                      return <PaginationItem key="ellipsis-start"><PaginationEllipsis /></PaginationItem>;
+                    } else if (i === 5) {
+                      // Show ellipsis instead of a number
+                      return <PaginationItem key="ellipsis-end"><PaginationEllipsis /></PaginationItem>;
+                    } else if (i === 6) {
+                      pageNumber = totalPages;
+                    } else {
+                      pageNumber = currentPage + (i - 3);
+                    }
+                  }
+                  
+                  // Render the page number
+                  return (
+                    <PaginationItem key={pageNumber}>
+                      <PaginationLink 
+                        href="#" 
+                        onClick={(e) => {
+                          e.preventDefault();
+                          setCurrentPage(pageNumber);
+                        }}
+                        isActive={currentPage === pageNumber}
+                      >
+                        {pageNumber}
+                      </PaginationLink>
+                    </PaginationItem>
+                  );
+                })}
+                
                 <PaginationItem>
-                  <PaginationLink href="#" isActive>1</PaginationLink>
-                </PaginationItem>
-                <PaginationItem>
-                  <PaginationLink href="#">2</PaginationLink>
-                </PaginationItem>
-                <PaginationItem>
-                  <PaginationLink href="#">3</PaginationLink>
-                </PaginationItem>
-                <PaginationItem>
-                  <PaginationLink href="#">4</PaginationLink>
-                </PaginationItem>
-                <PaginationItem>
-                  <PaginationLink href="#">5</PaginationLink>
-                </PaginationItem>
-                <PaginationItem>
-                  <PaginationLink href="#">6</PaginationLink>
-                </PaginationItem>
-                <PaginationItem>
-                  <PaginationLink href="#">7</PaginationLink>
-                </PaginationItem>
-                <PaginationItem>
-                  <PaginationNext href="#" />
+                  <PaginationNext 
+                    href="#" 
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setCurrentPage(prev => Math.min(prev + 1, totalPages));
+                    }}
+                    className={currentPage === totalPages ? "pointer-events-none opacity-50" : ""}
+                  />
                 </PaginationItem>
               </PaginationContent>
             </Pagination>
@@ -208,13 +280,13 @@ export function PreviousQueries() {
           <div className="mt-12">
             <h3 className="text-2xl font-bold mb-6 text-center">Coming Soon</h3>
             <div className="grid gap-6 md:grid-cols-2">
-              {comingSoonQueries.map((query, index) => (
-                <Card key={index} className="hover:shadow-lg transition-shadow overflow-hidden border border-dashed border-gray-300 bg-gray-50">
+              {comingSoonQueries.map((query) => (
+                <Card key={query.id} className="hover:shadow-lg transition-shadow overflow-hidden border border-dashed border-gray-300 bg-gray-50">
                   <CardHeader className="flex flex-row items-center justify-between pb-2">
                     <div className="flex items-center gap-2">
-                      <span className={`px-3 py-1 text-xs font-semibold rounded-full ${getStatusColor(query.status)}`}>
+                      <Badge variant={getStatusBadge(query.status)}>
                         {query.status}
-                      </span>
+                      </Badge>
                     </div>
                   </CardHeader>
                   <CardContent>
@@ -254,14 +326,3 @@ export function PreviousQueries() {
     </section>
   );
 }
-
-import {
-  Pagination,
-  PaginationContent,
-  PaginationEllipsis,
-  PaginationItem,
-  PaginationLink,
-  PaginationNext,
-  PaginationPrevious,
-} from "@/components/ui/pagination";
-

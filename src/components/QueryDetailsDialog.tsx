@@ -12,6 +12,7 @@ import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Badge } from "@/components/ui/badge";
 import { MessageSquare, Calendar, Tag, Download, Share2, ThumbsUp, CheckCircle } from 'lucide-react';
+import { toast } from "@/components/ui/sonner";
 
 export interface QueryDetailsProps {
   open: boolean;
@@ -34,20 +35,20 @@ export interface QueryDetailsProps {
 export function QueryDetailsDialog({ open, onOpenChange, query }: QueryDetailsProps) {
   if (!query) return null;
   
-  const getStatusColor = (status: string) => {
+  const getStatusBadge = (status: string) => {
     switch(status) {
       case "Resolved":
-        return "bg-green-100 text-green-700";
+        return "success";
       case "Trending":
-        return "bg-orange-100 text-orange-700";
+        return "warning";
       case "Featured":
-        return "bg-purple-100 text-purple-700";
+        return "purple";
       case "In Review":
-        return "bg-blue-100 text-blue-700";
+        return "info";
       case "Coming Soon":
-        return "bg-gray-100 text-gray-500";
+        return "gray";
       default:
-        return "bg-gray-100 text-gray-700";
+        return "gray";
     }
   };
 
@@ -55,11 +56,10 @@ export function QueryDetailsDialog({ open, onOpenChange, query }: QueryDetailsPr
     const url = window.location.href;
     navigator.clipboard.writeText(url).then(
       () => {
-        // We should add toast here but for simplicity we're using alert
-        alert(`Link for "${query.question}" copied to clipboard`);
+        toast(`Link for "${query.question}" copied to clipboard`);
       },
       () => {
-        alert("Failed to copy link");
+        toast("Failed to copy link");
       }
     );
   };
@@ -69,7 +69,7 @@ export function QueryDetailsDialog({ open, onOpenChange, query }: QueryDetailsPr
       <DialogContent className="max-w-3xl max-h-[85vh] overflow-hidden flex flex-col">
         <DialogHeader className="border-b pb-4">
           <div className="flex justify-between items-center gap-2 mb-2">
-            <Badge variant="outline" className={`${getStatusColor(query.status)} px-2 py-1`}>
+            <Badge variant={getStatusBadge(query.status)} className="px-2 py-1">
               {query.status}
             </Badge>
             <div className="flex items-center gap-1 text-xs text-gray-500">
@@ -174,8 +174,8 @@ export function QueryDetailsDialog({ open, onOpenChange, query }: QueryDetailsPr
                 {query.answers} answers
               </Badge>
               {query.status !== "Coming Soon" && (
-                <Badge variant="outline" className="bg-green-50 text-green-700">
-                  <CheckCircle className="h-3 w-3 mr-1" /> Verified
+                <Badge variant="success" className="flex items-center gap-1">
+                  <CheckCircle className="h-3 w-3" /> Verified
                 </Badge>
               )}
             </div>
@@ -183,7 +183,7 @@ export function QueryDetailsDialog({ open, onOpenChange, query }: QueryDetailsPr
               <Button variant="outline" onClick={handleShare}>
                 <Share2 className="h-4 w-4 mr-2" /> Share
               </Button>
-              <Button variant={query.status === "Coming Soon" ? "outline" : "youngburg"} 
+              <Button variant={query.status === "Coming Soon" ? "outline" : "default"} 
                       disabled={query.status === "Coming Soon"}>
                 <MessageSquare className="h-4 w-4 mr-2" /> 
                 {query.status === "Coming Soon" ? "Coming Soon" : "Join Discussion"}
