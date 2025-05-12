@@ -1,3 +1,4 @@
+
 import { Nav } from '@/components/Nav';
 import { Footer } from '@/components/Footer';
 import { useState } from 'react';
@@ -33,6 +34,7 @@ import {
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { toast } from "@/components/ui/sonner";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { FAQ } from '@/components/FAQ';
 
 // Document data
 const featuredDocuments = [
@@ -194,6 +196,9 @@ export default function Query() {
           </div>
         </div>
       </div>
+
+      {/* FAQ Section - Added below Hero section */}
+      <FAQ />
 
       {/* Document Types Filter */}
       <div className="bg-gray-50 py-6 border-b">
