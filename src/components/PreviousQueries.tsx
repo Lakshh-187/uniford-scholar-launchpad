@@ -1,7 +1,7 @@
 
 import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { MessageSquare, ArrowRight, Calendar, CheckCircle, Tag } from "lucide-react";
+import { MessageSquare, ArrowRight, Calendar, Tag } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { QueryDetailsDialog } from "@/components/QueryDetailsDialog";
@@ -150,7 +150,7 @@ export function PreviousQueries() {
         <div className="space-y-8">
           {/* Active Queries */}
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {currentQueries.map((query, index) => (
+            {currentQueries.map((query) => (
               <Card key={query.id} className="hover:shadow-lg transition-shadow overflow-hidden border-t-4 border-t-wsy-teal">
                 <CardHeader className="flex flex-row items-center justify-between pb-2">
                   <div className="flex items-center gap-2">
