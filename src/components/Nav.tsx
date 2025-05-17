@@ -33,9 +33,7 @@ export function Nav() {
           <Link to="/mentor" className="font-medium hover:text-wsy-blue transition-colors">
             Mentor
           </Link>
-          <Link to="/sep-1300" className="font-medium hover:text-wsy-blue transition-colors">
-            SEP-1300
-          </Link>
+          {/* REMOVED: Link to "/sep-1300" */}
           <Button asChild variant="secondary" size="sm">
             <a href="https://forms.gle/ZBER68Rp2J3f9jbk8" target="_blank" rel="noopener noreferrer" className="ml-4">
               Submit Query
@@ -85,13 +83,7 @@ export function Nav() {
             >
               Mentor
             </Link>
-            <Link 
-              to="/sep-1300" 
-              className="font-medium hover:text-wsy-blue transition-colors"
-              onClick={() => setIsOpen(false)}
-            >
-              SEP-1300
-            </Link>
+            {/* REMOVED: Link to "/sep-1300" */}
             <Button 
                 asChild 
                 variant="secondary" 
@@ -106,4 +98,3 @@ export function Nav() {
     </header>
   );
 }
-
