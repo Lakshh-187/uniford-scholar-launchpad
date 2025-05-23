@@ -9,7 +9,8 @@ import Episode7 from "./pages/Episode7";
 import NotFound from "./pages/NotFound";
 import Query from "./pages/Query";
 import Mentor from "./pages/Mentor";
-import CareersPage from "./pages/Careers"; // Import the new Careers page
+import CareersPage from "./pages/Careers";
+import LetterOfAppreciation from "./pages/LetterOfAppreciation";
 
 const queryClient = new QueryClient();
 
@@ -24,7 +25,8 @@ const App = () => (
           <Route path="/episode-7" element={<Episode7 />} />
           <Route path="/query" element={<Query />} />
           <Route path="/mentor" element={<Mentor />} />
-          <Route path="/careers" element={<CareersPage />} /> {/* ADDED NEW ROUTE for Careers */}
+          <Route path="/careers" element={<CareersPage />} />
+          <Route path="/letter-of-appreciation" element={<LetterOfAppreciation />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

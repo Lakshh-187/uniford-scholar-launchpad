@@ -21,7 +21,8 @@ export function Footer() {
               <li><Link to="/episode-7" className="hover:text-wsy-teal transition-colors">Episode 7</Link></li>
               <li><Link to="/query" className="hover:text-wsy-teal transition-colors">Query</Link></li>
               <li><Link to="/mentor" className="hover:text-wsy-teal transition-colors">Mentor</Link></li>
-              <li><Link to="/careers" className="hover:text-wsy-teal transition-colors">Careers</Link></li> {/* Added Careers link */}
+              <li><Link to="/careers" className="hover:text-wsy-teal transition-colors">Careers</Link></li>
+              <li><Link to="/letter-of-appreciation" className="hover:text-wsy-teal transition-colors">Letter of Appreciation</Link></li>
             </ul>
           </div>
           
